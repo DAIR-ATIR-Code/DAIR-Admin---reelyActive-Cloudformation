@@ -1,3 +1,3 @@
 # reelyActive
 
-DAIR Repo for reelyActive Boosterpack
+DAIR repo for reelyActive Boosterpack

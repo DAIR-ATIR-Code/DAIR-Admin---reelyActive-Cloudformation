@@ -1,5 +1,5 @@
 #!/bin/bash
-#reelyActive-Install hlc-server and run with systemctl
+# reelyActive-Install hlc-server and run with systemctl
 sudo mkdir /opt/reelyActive
 sudo chown reelyactive /opt/reelyActive
 sudo chgrp reelyactive /opt/reelyActive

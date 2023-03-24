@@ -1,3 +1,3 @@
 # reelyActive
 
-DAIR repo for reelyActive BoosterPack
+AWS Cloudformation repo for reelyActive BoosterPack

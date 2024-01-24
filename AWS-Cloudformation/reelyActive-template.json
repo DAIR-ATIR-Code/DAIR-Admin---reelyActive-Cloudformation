@@ -81,37 +81,42 @@
 
                 "{",
 
+                "echo \"echo '********** DAIR BoosterPack is currently being installed... Please wait!!! **********' \" >> \"/etc/profile.d/boosterpack.sh\"",
+
                 "RELEASENAME=\"main\"",
                 
-                "echo \"=======> DAIR BOOSTERPACK INSTALLATION IS STARTING <=======\"",
+                "echo \"=======> REELYACTIVE BOOSTERPACK INSTALLATION IS STARTING <=======\"",
                 "echo $(date)",
 
                 "#Install NodeJS and npm",
-                "curl -L -k \"https://code.cloud.canarie.ca:3000/shassan/reelyActive/raw/$RELEASENAME/Workflow/Provision/install_apps.sh\" | bash &",
+                "curl -L -k \"https://raw.githubusercontent.com/DAIR-ATIR-Code/DAIR-Admin---reelyActive-Cloudformation/main/Workflow/Provision/install_apps.sh\" | bash &",
                 "wait",
 
                 "#Create reelyactive user",
-                "curl -L -k \"https://code.cloud.canarie.ca:3000/shassan/reelyActive/raw/$RELEASENAME/Workflow/Provision/create_user.sh\" | bash &",
+                "curl -L -k \"https://raw.githubusercontent.com/DAIR-ATIR-Code/DAIR-Admin---reelyActive-Cloudformation/main/Workflow/Provision/create_user.sh\" | bash &",
                 "wait",
 
                 "#Install Elasticsearch and enable as systemctl service",
-                "curl -L -k \"https://code.cloud.canarie.ca:3000/shassan/reelyActive/raw/$RELEASENAME/Workflow/Post-Provision/install_elasticsearch.sh\" | bash &",
+                "curl -L -k \"https://raw.githubusercontent.com/DAIR-ATIR-Code/DAIR-Admin---reelyActive-Cloudformation/main/Workflow/Post-Provision/install_elasticsearch.sh\" | bash &",
                 "wait",
 
                 "#Install Kibana and enable as systemctl service",
-                "curl -L -k \"https://code.cloud.canarie.ca:3000/shassan/reelyActive/raw/$RELEASENAME/Workflow/Post-Provision/install_kibana.sh\" | bash &",
+                "curl -L -k \"https://raw.githubusercontent.com/DAIR-ATIR-Code/DAIR-Admin---reelyActive-Cloudformation/main/Workflow/Post-Provision/install_kibana.sh\" | bash &",
                 "wait",
 
                 "#Install hlc-server and run with systemctl",
-                "curl -L -k \"https://code.cloud.canarie.ca:3000/shassan/reelyActive/raw/$RELEASENAME/Workflow/Post-Provision/install_hlc.sh\" | bash &",
+                "curl -L -k \"https://raw.githubusercontent.com/DAIR-ATIR-Code/DAIR-Admin---reelyActive-Cloudformation/main/Workflow/Post-Provision/install_hlc.sh\" | bash &",
                 "wait",
 
                 "#Start Elasticsearch and Kibana",
-                "curl -L -k \"https://code.cloud.canarie.ca:3000/shassan/reelyActive/raw/$RELEASENAME/Workflow/Post-Provision/start_services.sh\" | bash &",
+                "curl -L -k \"https://raw.githubusercontent.com/DAIR-ATIR-Code/DAIR-Admin---reelyActive-Cloudformation/main/Workflow/Post-Provision/start_services.sh\" | bash &",
                 "wait",
 
-                "echo \"=======> DAIR BOOSTERPACK INSTALLATION IS COMPLETE <=======\"",
+                "echo \"=======> REELYACTIVE BOOSTERPACK INSTALLATION IS COMPLETE <=======\"",
                 "echo $(date)",
+
+                "sed -i '1d' \"/etc/profile.d/boosterpack.sh\"",
+                "echo \"echo '********** DAIR BoosterPack is installed !!! **********' \" >> \"/etc/profile.d/boosterpack.sh\"",
                 
                 "} >> /var/log/boosterpack.log 2>&1"   
               ]
@@ -122,10 +127,6 @@
     }
   }, 
   "Outputs" : {
-    "InstanceID" : {
-        "Value" : { "Ref" : "AppServer" },
-        "Description" : "Application Server Instance ID"
-      },
     "IPAddress" : {
       "Value" : { "Fn::GetAtt" : [ "AppServer", "PublicIp" ]},
       "Description" : "Application Server IP Address"
